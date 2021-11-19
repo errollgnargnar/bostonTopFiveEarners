@@ -9,11 +9,9 @@
     var html = '';
 
     let salariesArr = [];
-
     for (let i = 0; i < len; i++) {
       if (person[i][11] > 100000) {
         salariesArr.push(person[i][11]);
-
         // html += '<li class="boston">' +
         //   '<h2>' + person[i][8] + '</h2>' +
         //   '<h3>' + person[i][11] + '</h3>'
@@ -50,7 +48,8 @@
       topFiveFin.push(topFiveEarners[i], topFiveSalaries[i], '---');
       console.log(topFiveFin);
     }
-    html += '<div> The Top Five Earners are: <br>' + topFiveFin + ' </div>';
+    html += '<div> The Top Five Earners are: <br>' + topFiveFin + ' </div>'
+    + '<div> and there are a total of ' + salariesArr.length + ' people making over $100,000' + '<div>';
 
     container.innerHTML = '<ul id = "boston">' + html + '</ul>';
   }
