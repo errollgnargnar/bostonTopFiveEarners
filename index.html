@@ -1,0 +1,58 @@
+<div id="container">
+  <!-- populated by JS-->
+</div>
+<script src="./boston.js"></script>
+<script>
+  function renderBoston(boston, container) {
+    var person = boston.data;
+    var len = boston.data.length;
+    var html = '';
+
+    let salariesArr = [];
+
+    for (let i = 0; i < len; i++) {
+      if (person[i][11] > 100000) {
+        salariesArr.push(person[i][11]);
+
+        // html += '<li class="boston">' +
+        //   '<h2>' + person[i][8] + '</h2>' +
+        //   '<h3>' + person[i][11] + '</h3>'
+      }
+    }
+    salariesArr.sort();
+
+
+    let topEarners = [];
+    function pullName(highestSalary){
+      for(let i = 0; i < len; i++){
+        if (highestSalary === person[i][11]){
+          topEarners.push(person[i][8]);
+          html += '<li class="boston">' +
+          '<h6>' + person[i][8] + '</h6>' +
+          '<h6>' + person[i][11] + '</h6>';  
+        }
+      }
+    }
+
+
+    for(let i = 0; i < salariesArr.length; i++) {
+      pullName(salariesArr[i]);
+    }
+
+    let topFiveEarners = topEarners.slice(topEarners.length-5);
+    let topFiveSalaries = salariesArr.slice(salariesArr.length-5);
+
+    console.log(topFiveEarners,topFiveSalaries);
+    
+    let topFiveFin = [];
+    for(let i = 0; i < topFiveSalaries.length; i++){
+      console.log(topFiveEarners[i], topFiveSalaries[i]);
+      topFiveFin.push(topFiveEarners[i], topFiveSalaries[i], '---');
+      console.log(topFiveFin);
+    }
+    html += '<div> The Top Five Earners are: <br>' + topFiveFin + ' </div>';
+
+    container.innerHTML = '<ul id = "boston">' + html + '</ul>';
+  }
+  renderBoston(boston, document.getElementById('container'));
+</script>
